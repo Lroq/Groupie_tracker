@@ -1,0 +1,270 @@
+:root {
+  --card-background-dark: #202020;
+  --card-background-light: #ff0000;
+}
+
+header h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-shadow: 0 0 5px #5b6d96, 0 0 10px;
+}
+
+/* bouton filtre */
+
+#toggleFormButton {
+  background-color: #040552;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 20px;
+  transition: all 0.3s ease;
+}
+
+#toggleFormButton:hover {
+  background-color: #0000ff;
+  border-radius: 20px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 50px;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  height: 250px;
+  width: 250px;
+  margin: 1rem;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  cursor: pointer;
+  animation: fadeIn ease 3s;
+}
+
+.card:hover {
+  transform: scale(1.2);
+}
+
+.card a div:first-child {
+  font-size: 1.2em;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 2px #5b6d96, 0 0 10px;
+}
+
+.card a div:last-child {
+  font-size: 0.8em;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 5px #5b6d96, 0 0 10px;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:0.7;}
+}
+
+/* Couleur des cartes */
+
+@media (prefers-color-scheme: dark) {
+  .card {
+      background-color: var(--card-background-dark);
+  }
+}
+
+body {
+    background-color: rgba(175, 170, 170, 0.918);
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (max-width: 600px) {
+    .card-container {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 80%;
+        margin: 0.5rem auto;
+    }
+}
+
+/* barre de recherche artiste */
+
+.input {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ccc;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    transition: 300ms ease-in-out;
+}
+
+.input:focus {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 13px 13px 100px #969696,
+               -13px -13px 100px #ffffff;
+}
+
+/* Styles pour le formulaire */
+
+form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 50px;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+form:hover {
+    transform: scale(1.01);
+}
+
+fieldset {
+    border: none;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+/* dates et premier album*/
+input[type=range] {
+  width: 50%;
+  transition: all 0.5s ease;
+}
+
+input[type=range]:hover {
+  transform: scale(1.05);
+}
+
+input[type=reset] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type=reset]:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+@keyframes resetButtonAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+input[type=reset] {
+  animation: resetButtonAnimation 2s infinite;
+}
+
+
+/* Message d'erreur */
+#error-message {
+    display: none;
+    text-align: center;
+    margin-top: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large;
+    color: rgb(0, 0, 0);
+    animation: shake 0.3s;
+    animation-iteration-count: 5;
+    width: 100%; /* Utilise toute la largeur du conteneur */
+    text-align: center; /* Centre le texte à l'intérieur du message d'erreur */
+}
+
+#notFoundImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -80px; /* ajustez la valeur selon vos besoins */
+}
+
+
+
+
+/* Animation de secousse pour le message d'erreur */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* change de coueleur */
+
+/* The switch - the box around the slider */
+.switch {
+    font-size: 20px;
+    position: relative;
+    float: right;
+    width: 3.5em;
+    height: 2em;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    --background: #522ba7;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    transition: .5s;
+    border-radius: 30px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    left: 10%;
+    bottom: 15%;
+    box-shadow: inset 8px -4px 0px 0px #fff000;
+    background: var(--background);
+    transition: .5s;
+  }
+  
+  input:checked + .slider {
+    background-color: #522ba7;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(100%);
+    box-shadow: inset 15px -4px 0px 15px #fff000;
+  }

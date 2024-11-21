@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Groupie-Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="icon" type="image" href="../static/assets/icon.png">
+</head>
+
+<body>
+    <header>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+
+        <div class="search-container">
+            <input type="text" list="barre" id="recherche" name="recherche" class="input" placeholder="Recherche artiste..." oninput="searchArtist()" />
+            <datalist id="barre">
+                {{range .Artists}}
+                <option value="{{.Name}}">nom</option>
+                <option value="{{.CreationDate}}">creation date</option>
+                <option value="{{.FirstAlbumDate}}">firstalbum</option>
+                {{range .Members}}
+                <option value="{{index .}}">members</option>
+                {{end}}
+                {{range .Locations.Locations}}
+                <option value="{{index .}}">location</option>
+                {{end}}
+                {{end}}
+            </datalist>
+        </div>
+
+        <h1><i>Artistes</i></h1>
+
+        <button id="toggleFormButton" onclick="toggleForm()">Afficher les filtres</button>
+
+        <form action="/listartist" method="post" id="filterForm" style="display: none;">
+            <fieldset>
+                <legend>Filtres:</legend>
+        
+                <div>
+                    <label for="creation_date">Date Création</label>
+                    <input type="range" id="creation_date" name="creation_date" min="1958" max="2015" value="1959" oninput="updateValue(this.value, 'creationValue'); submitForm();" />
+                    <p id="creationValue">...</p>
+                </div>
+        
+                <div>
+                    <label for="album_date">Date Premier Album</label>
+                    <input type="range" id="album_date" name="album_date" min="1963" max="2018" value="1964" oninput="updateValue(this.value, 'albumValue'); submitForm();" />
+                    <p id="albumValue">...</p>
+                </div>
+        
+                <label for="checkboxContainer">N° Membres</label>
+                <div id="checkboxContainer"></div>
+        
+                <div>
+                    <label for="location">Location</label>
+                    <select id="location" name="location" onchange="submitForm();"></select>
+                </div>
+        
+                <input type="reset" value="Réinitialisation" onclick="submitForm();" />
+            </fieldset>
+        </form>
+    </header>
+
+    <main>
+        <div id="error-message" style="display: none;"><strong>Artiste non trouvé</strong></div>
+
+        <div class="card-container levels" id="artistContainer">
+            {{range .Artists}}
+            <div class="card" data-artist="{{.Name}} {{.CreationDate}} {{.FirstAlbumDate}} {{.Locations.Locations}} {{.Members}}">
+                <a href="/artist/{{.Name}}">
+                    <div>{{.Name}}</div>
+                    <div>{{.CreationDate}}</div>
+                </a>
+            </div>
+            {{end}}
+        </div>
+
+        <div class="card-container levels" id="filteredArtistContainer">
+            {{range .FilteredArtists}}
+            <div class="card" data-artist="{{.Name}} {{.CreationDate}} {{.FirstAlbumDate}} {{.Locations.Locations}} {{.Members}}">
+                <a href="/artist/{{.Name}}">
+                    <div>{{.Name}}</div>
+                    <div>{{.CreationDate}}</div>
+                </a>
+            </div>
+            {{end}}
+        </div>
+
+    </main>
+
+    <img src="../static/assets/sad-freddie.png" alt="Artiste non trouvé" id="notFoundImage">
+
+    <script src="../script/index.js"></script>
+    <script src="../script/bonus.js"></script>
+    <script src="../script/filters.js"></script>
+</body>
+</html>
