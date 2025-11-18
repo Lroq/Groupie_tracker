@@ -17,5 +17,6 @@ func setupHandlers() {
 func main() {
 	setupHandlers()
 	handlers.SetupRoutes()
+	println("Server is running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

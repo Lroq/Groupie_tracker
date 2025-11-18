@@ -66,7 +66,9 @@
     </header>
 
     <main>
-        <div id="error-message" style="display: none;"><strong>Artiste non trouvé</strong></div>
+        <div id="error-message" style="display: none;"><strong>Artiste non trouvé</strong>
+            <img src="../static/assets/sad-freddie.png" alt="Artiste non trouvé" id="notFoundImage" style="margin-top: 20px;">
+        </div>
 
         <div class="card-container levels" id="artistContainer">
             {{range .Artists}}
@@ -91,9 +93,6 @@
         </div>
 
     </main>
-
-    <img src="../static/assets/sad-freddie.png" alt="Artiste non trouvé" id="notFoundImage">
-
     <script src="../script/index.js"></script>
     <script src="../script/bonus.js"></script>
     <script src="../script/filters.js"></script>
